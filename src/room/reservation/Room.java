@@ -1,24 +1,65 @@
-package booking;
-
-import java.math.BigDecimal;
+package room.reservation;
 
 public class Room {
     private int roomNumber;
+    private double price;   // price in CZK
     private int numOfBeds;
     private boolean hasBalcony;
     private boolean hasSeaView;
-    double price;   // price in euro
 
-    public Room (int roomNumber, int numOfBeds, boolean hasBalcony, boolean hasSeaView, double price) {
+    //region Constructors
+    public Room (int roomNumber, double price, int numOfBeds, boolean hasBalcony, boolean hasSeaView) {
         this.roomNumber = roomNumber;
+        this.price = price;
         this.numOfBeds = numOfBeds;
         this.hasBalcony = hasBalcony;
         this.hasSeaView = hasSeaView;
-        this.price = price;
     }
 
     public Room (int roomNumber, int price) {
-        this(roomNumber, 2, false, false, price);
+        this(roomNumber, price, 2, false, false);
     }
 
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+    // endregion
+
+    //region Getters and setters
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public int getNumOfBeds() {
+        return numOfBeds;
+    }
+
+    public void setNumOfBeds(int numOfBeds) {
+        this.numOfBeds = numOfBeds;
+    }
+
+    public boolean isHasBalcony() {
+        return hasBalcony;
+    }
+
+    public void setHasBalcony(boolean hasBalcony) {
+        this.hasBalcony = hasBalcony;
+    }
+
+    public boolean isHasSeaView() {
+        return hasSeaView;
+    }
+
+    public void setHasSeaView(boolean hasSeaView) {
+        this.hasSeaView = hasSeaView;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    // endregion
 }
