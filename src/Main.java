@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,8 +18,8 @@ public class Main {
         // endregion
 
         // region pokoje
-        Room room1 = new Room(1, 1000, 1, false, true);
-        Room room2 = new Room(2, 1000, 1, false, true);
+        Room room1 = new Room(1, 1000, 1, true, true);
+        Room room2 = new Room(2, 1000, 1, true, true);
         Room room3 = new Room(3, 2400, 3, false, true);
         // endregion
 
