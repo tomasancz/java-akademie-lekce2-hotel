@@ -1,15 +1,21 @@
-package room.reservation;
+package cz.engeto.roomreservation;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+// [Domácí úkol - lekce 2]
 public class Booking {
     private List<Guest> guestList = new ArrayList<>();
     private Room room;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
     private boolean isBusinessTrip;
+    DateTimeFormatter czechFormat = DateTimeFormatter.ofPattern("d.MM.yyyy");
 
     // region Constructors
     public Booking(Guest guest, Room room,  LocalDate checkInDate, LocalDate checkOutDate, boolean isBusinessTrip) {
@@ -62,6 +68,9 @@ public class Booking {
         isBusinessTrip = businessTrip;
     }
 
+    // endregion
+
+
     public void addGuest(Guest guest) {
         this.guestList.add(guest);
     }
@@ -69,5 +78,29 @@ public class Booking {
     public void removeGuest(Guest guest) {
         this.guestList.remove(guest);
     }
-    // endregion
+
+    public int getGuestsCount() {
+        return guestList.size();
+    }
+
+    public String getDescription() {
+        StringBuilder description = new StringBuilder("Rezervace pokoje č." + room.getRoomNumber() +
+                " na termín /" + getCheckInDate().format(czechFormat) + " - " + getCheckOutDate().format(czechFormat) +
+                "/" + (isBusinessTrip() ? "(služební cesta)" : "") + " pro ");
+        Iterator<Guest> iterator = guestList.iterator();
+        while (iterator.hasNext()){
+            description.append(iterator.next().getDescription());
+            if(iterator.hasNext()) {
+                description.append(", ");
+            } else {
+                description.append(".");
+            }
+        }
+        return description.toString();
+    }
+
+    @Override
+    public String toString() {
+        return getDescription();
+    }
 }

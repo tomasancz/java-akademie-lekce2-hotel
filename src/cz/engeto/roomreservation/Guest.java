@@ -1,7 +1,9 @@
-package room.reservation;
+package cz.engeto.roomreservation;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+// [Domácí úkol - lekce 2]
 public class Guest {
     private String name;
     private String surname;
@@ -40,4 +42,14 @@ public class Guest {
         this.birthdate = birthdate;
     }
     // endregion
+
+    public String getDescription () {
+        DateTimeFormatter czechFormat = DateTimeFormatter.ofPattern("d.MM.yyyy");
+        return name + " " + surname + " (" + birthdate.format(czechFormat) + ")";
+    }
+
+    @Override
+    public String toString() {
+        return getDescription();
+    }
 }

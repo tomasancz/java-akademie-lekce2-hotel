@@ -1,14 +1,18 @@
-package room.reservation;
+package cz.engeto.roomreservation;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+// [Domácí úkol - lekce 2]
 public class Room {
     private int roomNumber;
-    private double price;   // price in CZK
+    private BigDecimal price;   // price in CZK
     private int numOfBeds;
     private boolean hasBalcony;
     private boolean hasSeaView;
 
     //region Constructors
-    public Room (int roomNumber, double price, int numOfBeds, boolean hasBalcony, boolean hasSeaView) {
+    public Room (int roomNumber, BigDecimal price, int numOfBeds, boolean hasBalcony, boolean hasSeaView) {
         this.roomNumber = roomNumber;
         this.price = price;
         this.numOfBeds = numOfBeds;
@@ -16,7 +20,7 @@ public class Room {
         this.hasSeaView = hasSeaView;
     }
 
-    public Room (int roomNumber, int price) {
+    public Room (int roomNumber, BigDecimal price) {
         this(roomNumber, price, 2, false, false);
     }
 
@@ -54,12 +58,28 @@ public class Room {
         this.hasSeaView = hasSeaView;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
     // endregion
+
+    public String getDescription() {
+        String description = "Pokoj č." + roomNumber + ": " + numOfBeds + " lůžka";
+        if (hasBalcony) {
+            description += ", s balkónem";
+        } else {
+            description += ", bez balkónu";
+        }
+        if (hasSeaView) {
+            description += ", s výhledem na moře";
+        } else {
+            description += ", bez výhledu na moře";
+        }
+        description += ", cena za noc: " + getPrice() + " Kč";
+        return description;
+    }
 }
